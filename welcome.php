@@ -1,7 +1,5 @@
 <?php
-function  printt(){
-        echo "ay 7aga";
-    }
+
 include "controllers/UserController.php";
 if (isset($_POST['login']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     UserController::login($_POST['uname'], $_POST['psw']);
