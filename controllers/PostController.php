@@ -5,11 +5,8 @@
  * Date: 22-Dec-17
  * Time: 19:17
  */
-require_once '../models/Post.php';
-class PostController
-{
-
-
+require_once __DIR__."/../models/Post.php";
+class PostController {
     static function addPost($post_content) {
         $post = new Post();
         $user_id = 1;
@@ -19,8 +16,7 @@ class PostController
         $post->addPost($user_id, $content, $created_at);
     }
 
-    public static function getNewsFeedTweets($user_id)
-    {
+    public static function getNewsFeedTweets($user_id) {
         $post = new Post();
         $tweets = $post->getNewsFeedTweets($user_id);
         return $tweets;

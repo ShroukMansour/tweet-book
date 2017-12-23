@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 include "/opt/lampp/htdocs/tweetbook/Config.php";
 class UserModel {
     static public function checkIfUserExsits($user_name, $password) {
@@ -7,7 +8,6 @@ class UserModel {
         $password = mysqli_real_escape_string($conn, $password); 
         $sql = "SELECT id FROM user WHERE name = '$username' and password = '$password'";
         $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $count = mysqli_num_rows($result);
         connection::closeConnection($conn);
         if ($count == 1) 
@@ -56,6 +56,21 @@ class UserModel {
         }
         connection::closeConnection($conn);
         return $followers;
+      }
+    public function insertUser($full_name, $user_name, $password){
+        $conn = connection::createConnection();
+        $full_name = mysqli_real_escape_string($conn, $full_name);
+        $username = mysqli_real_escape_string($conn, $user_name);
+        $password = mysqli_real_escape_string($conn, $password);
+        $query="insert into user (name,email,password) values  ('$full_name','$username','$password') ";
+        $result = mysqli_query($conn,$query);
+        connection::closeConnection($conn);
+        if($result){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 ?>

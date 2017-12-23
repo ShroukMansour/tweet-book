@@ -5,7 +5,7 @@
  * Date: 22-Dec-17
  * Time: 12:23
  */
-require_once '../controllers/PostController.php';
+require_once __DIR__."/controllers/PostController.php";
     if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
          PostController::addPost($_POST['tweet-content']);
     }
@@ -23,9 +23,9 @@ require_once '../controllers/PostController.php';
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Twitter</title>
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../public/css/homepage2.css">
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/css/homepage2.css">
 </head>
 <body>
 
