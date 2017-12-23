@@ -1,8 +1,8 @@
 <?php
 //
-require_once "/opt/lampp/htdocs/tweetbook/Config.php";
-include ('/opt/lampp/htdocs/tweetbook/Pair.php');
-include ('/opt/lampp/htdocs/tweetbook/models/UserModel.php');
+require_once __DIR__."/../config.php";
+require __DIR__."/../pair.php";
+require __DIR__. "/../models/UserModel.php";
 
 class UserController {
   
@@ -49,18 +49,57 @@ static function suggestFollowers($userID = 1) {
      $user = new User();
      $userExisits = $user->checkIfUserExsits($user_name, $password);
      if($userExisits) {
-        echo "done";
         UserController::createSessions($user_name, $password);
-        echo "done";
-        header("location: welcome.php");
+        header("Location: homePage.php");
+        exit;
       } else {
          echo "Your Login Name or Password is invalid";
       }
  }
+ static function signup($full_name,$username,$password){
+     $user = new User();
+     $userExisits = $user->checkIfUserExsits($username, $password);
+     if($userExisits) {
+         echo "User name is already taken";
+     }
+     if (!preg_match("/^[0-9_a-zA-Z]*$/", $username) || !preg_match("/^[0-9_a-zA-Z]*$/", $full_name) || !preg_match("/^[0-9_a-zA-Z]*$/", $password) ) {
+         echo "Only letters and numbers are allowed";
+     }
+     else{
+         $checkInsertion =$user->insertUser($full_name,$username,$password);
+     }
+         if ($checkInsertion)
+         {
+             UserController::login($username, $password);
+
+         }
+         else
+         {
+             echo "user not inserted in db";
+         }
+ }
+ static function logout($username, $password){
+     session_start();
+     UserController::clearsessionscookies($username, $password) ;
+     header("Location: welcome.php");
+ }
+    function clearsessionscookies($username,$password)
+    {
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+
+        session_unset();
+        session_destroy();
+
+
+            setcookie("TweetbookUsername", $username, time() - 60 * 60 * 30);
+            setcookie("TweetbookPassword", $password, time() - 60 * 60 * 30);
+            return;
+    }
 static function createSessions($username, $password) 
     { 
-        $_SESSION["username"] = $username; 
-        $_SESSION["password"] = md5($password); 
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = md5($password);
 
         if(isset($_POST['rememberme'])) 
         { 

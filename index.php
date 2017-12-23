@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 include "controllers/UserController.php";
     if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
         UserController::login($_POST['uname'], $_POST['password']);
@@ -66,7 +66,7 @@ include "controllers/UserController.php";
             <input type="checkbox" checked="checked" name="rememberme" id="rememberme" > Remember me
         </div><br>
         <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">Forgot <a href="#">password?</a></span>
+            <span class="psw">Forgot <a href="<?php echo"a3mlk eh tyb!"; ?>">password?</a></span>
         </div>
     </form>
     

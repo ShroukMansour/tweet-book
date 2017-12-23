@@ -1,6 +1,6 @@
 <?php
 
-require_once "/opt/lampp/htdocs/tweetbook/Config.php";
+require_once __DIR__."/../pair.php";
 class User {
     private $ID;
     private $name;
@@ -38,12 +38,27 @@ class User {
         $password = mysqli_real_escape_string($conn, $password); 
         $sql = "SELECT id FROM user WHERE name = '$username' and password = '$password'";
         $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $count = mysqli_num_rows($result);
         $db->closeConnection();
         if ($count == 1) 
             return true;
         return false;
+    }
+    public function insertUser($full_name, $user_name, $password){
+        $db = new connection();
+        $conn = $db->createConnection();
+        $full_name = mysqli_real_escape_string($conn, $full_name);
+        $username = mysqli_real_escape_string($conn, $user_name);
+        $password = mysqli_real_escape_string($conn, $password);
+        $query="insert into user (name,email,password) values  ('$full_name','$username','$password') ";
+        $result = mysqli_query($conn,$query);
+        $db->closeConnection();
+        if($result){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 ?>

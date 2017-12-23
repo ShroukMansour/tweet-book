@@ -5,7 +5,7 @@
  * Date: 22-Dec-17
  * Time: 19:30
  */
-require_once '../Config.php';
+require_once __DIR__.'/../Config.php';
 class Post
 {
     private $id;

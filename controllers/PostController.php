@@ -5,7 +5,7 @@
  * Date: 22-Dec-17
  * Time: 19:17
  */
-require_once '../models/Post.php';
+require_once __DIR__."/../models/Post.php";
 class PostController
 {
 
