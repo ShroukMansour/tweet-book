@@ -1,24 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Shrouk Mansour
- * Date: 22-Dec-17
- * Time: 12:23
- */
-require_once '../controllers/PostController.php';
-    if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
-         PostController::addPost($_POST['tweet-content']);
-    }
-    $user_id = 1;
-    $tweets = PostController::getNewsFeedTweets($user_id);
 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	    <link rel="stylesheet" type="text/css" href="profile.css">
+	    <link rel="stylesheet" type="text/css" href="../public/css/profile.css">
 
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  	<title>Profile</title>
@@ -34,7 +19,8 @@ require_once '../controllers/PostController.php';
 					<li><a href=""><i class="fa fa-globe"></i>Notifications</a></li>	
 					<li><a href=""><i class="fa fa-envelope-o"></i>Message</a></li>
 					<li><a href="" style="color: #1da1f2;" ><i class="fa fa-twitter" style="font-size:20px; padding-left: 250px; "></i></a></li>
-					<li style="padding-left: 125px;"><a class="search"><input type="search" name="" placeholder="search Twittbook" placeholder="fa fa-search"><a></li>
+					<li style="padding-left: 125px;"><form class="search">
+						<input type="search" name="" placeholder="search Twittbook" placeholder="fa fa-search"></form></li>
 					<li style=""><a href=""><i class="fa fa-user"></i><a></li>
 					<li style=""><a class="search"><button>Tweetbook</button><a></li>
 				</ul>
