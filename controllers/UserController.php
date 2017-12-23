@@ -17,13 +17,14 @@ class UserController {
     return $followers;
 }
 
-static function suggestFollowers($userID = 1) {
+static function suggestFollowers($userID) {
+    $userID = $user->getID();
     $followers = UserController::showFollowers("SELECT friend_id from friend where user_id = $userID");
     //ordered according to number of msgs between the follower and user
     $orderedFollowers = array();
     for($i = 0; $i < sizeof($followers);$i++) {
-         ///count msgs of each friend 
-        $cnt = $i ;
+         ///count msgs of each friend when we have friends msgs table
+        $cnt = mt_rand();
         $follower = new Pair($cnt , $followers[$i]);
         array_push($orderedFollowers, $follower);
     }
@@ -43,7 +44,31 @@ static function suggestFollowers($userID = 1) {
         }
     }
     return $sugestedFollowers;
- }
+}
+ 
+    static searchByFollowers($userID) {
+        $userID = $user->getID();
+        $followers = UserController::showFollowers("SELECT friend_id from friend where user_id = $userID");
+        $sugestedFollowers = array();
+        $markFollowers = array();
+     for($i = 0;$i < sizeof($followers);$i++) {
+        if(array_key_exists('$followers[$i]', $markFollowers) == false)   {
+         array_push($followers,$followers[i]);
+         $markFollowers['$orderedFollowers_friends[$j]'] = true;
+        }
+     }
+    for($i = 0;$i < sizeof($followers);$i++) {
+        $friendID =  $followers[$i];
+        $friendsOfFriends = UserController::showFollowers("SELECT friend_id from friend where user_id = $friendID");
+        for($j = 0 ;$j < sizeof($friendsOfFriends) && sizeof($sugestedFollowers) <= 100;$j++) {
+           if(array_key_exists('$friendsOfFriends[$j]', $markFollowers) == false)  {
+               array_push($sugestedFollowers, $friendsOfFriends[$j]);
+               $markFollowers['$friendsOfFriends[$j]'] = true;
+            }
+        }
+    }
+    return $sugestedFollowers;   
+    }
  
  static function login($user_name, $password) {
      $user = new User();
