@@ -1,49 +1,61 @@
 <?php
-
-require_once "/opt/lampp/htdocs/tweetbook/Config.php";
-class User {
-    private $ID;
-    private $name;
-    private $email;
-    private $password;
-    
-    public function  setID($ID) {
-        $this->ID = $ID;
-    }
-    public function getID() {
-        return $this->ID;
-    }
-     public function  setName($name) {
-        $this->name = $name;
-    }
-    public function getName() {
-        return $this->name;
-    }
-     public function  setEmail($email) {
-        $this->email = $email;
-    }
-    public function getEmail(){
-        return $this->email;
-    }
-     public function setPassword($password) {
-        $this->password = $password;
-    }
-    public function getPassword() {
-        return $this->password ;
-    }
-    public function checkIfUserExsits($user_name, $password) {
-        $db = new connection();
-        $conn = $db->createConnection();
+include "/opt/lampp/htdocs/tweetbook/Config.php";
+class UserModel {
+    static public function checkIfUserExsits($user_name, $password) {
+        $conn = connection::conncreateConnection();
         $username = mysqli_real_escape_string($conn, $user_name);
         $password = mysqli_real_escape_string($conn, $password); 
         $sql = "SELECT id FROM user WHERE name = '$username' and password = '$password'";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $count = mysqli_num_rows($result);
-        $db->closeConnection();
+        connection::closeConnection($conn);
         if ($count == 1) 
             return true;
         return false;
+    }
+    static public function getUserFollowers($ID) {
+        $query = "SELECT friend_id from friend where user_id = $ID";
+        $followers = UserModel::getFromDB($query, 'friend_id');
+        return $followers;
+    }
+    static public function getUserName($ID) {
+        $query = "SELECT name from user where id = $ID";
+        $conn = connection::createConnection();
+        $result = $conn->query($query);
+        $array_name = "";
+        while($row = $result->fetch_assoc()) {
+            $array_name =  $row["name"];
+        }
+        connection::closeConnection($conn);
+        return $array_name;
+    }
+     static public function checkThatFriendOfFriendNotYourFriend($friendOfFriendID,$userID) {
+        $query = "SELECT friend_id from friend where friend_id = $friendOfFriendID and user_id = $userID";
+        $friend = UserModel::getFromDB($query, 'friend_id');
+        return $friend;
+        
+    }
+    static public function insertFriend($userId,$followerId){ 
+        $query = "INSERT INTO friend(user_id,friend_id) VALUES($userId, $followerId)";
+        $conn = connection::createConnection();
+        $conn->query($query);
+        connection::closeConnection($conn);
+    }
+      static function getFromDB($sql,$rowI) {
+        $conn = connection::createConnection();
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $result = $conn->query($sql);
+        $followers = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($followers, $row[$rowI]);
+            }
+        }
+        connection::closeConnection($conn);
+        return $followers;
     }
 }
 ?>
