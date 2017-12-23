@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 include "/opt/lampp/htdocs/tweetbook/Config.php";
 class UserModel {
     static public function checkIfUserExsits($user_name, $password) {
