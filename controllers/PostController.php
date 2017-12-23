@@ -18,4 +18,11 @@ class PostController
         echo "from controller" . $content;
         $post->addPost($user_id, $content, $created_at);
     }
+
+    public static function getNewsFeedTweets($user_id)
+    {
+        $post = new Post();
+        $tweets = $post->getNewsFeedTweets($user_id);
+        return $tweets;
+    }
 }
