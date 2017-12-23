@@ -15,7 +15,6 @@ class PostController
         $user_id = 1;
         $content = $post_content;
         $created_at = date('Y-m-d H:i:s');
-        echo "from controller" . $content;
         $post->addPost($user_id, $content, $created_at);
     }
 

@@ -25,7 +25,7 @@ require_once '../controllers/PostController.php';
     <title>Twitter</title>
     <link rel="stylesheet" href="../public/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../public/css/homepage2.css">
+    <link rel="stylesheet" href="../public/css/homepage.css">
 </head>
 <body>
 
@@ -132,14 +132,10 @@ require_once '../controllers/PostController.php';
                                     echo $time;
                                 else
                                     echo $date;
-
                             ?>
-
-
                         </a>
                     </div>
                     <div class="tweet-post">
-
                         <?php echo  $tweeta['content'];?>
                     </div>
                 </div>
@@ -148,7 +144,30 @@ require_once '../controllers/PostController.php';
 
 
 
-        <div class="col-md-3">teset</div>
+        <div class="col-md-3">
+            <div class="who-to-follow">
+                <h3>Who to follow</h3>
+                <div class="follower">
+                    <img  src="../public/images/shrouk.jpg" alt="shrouk ">
+                    <a class="full-name">Shrouk Mansour</a>
+                    <a href="#" class="user-name">@shroukmansour</a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="follower">
+                    <img  src="../public/images/shrouk.jpg" alt="shrouk ">
+                    <a class="full-name">Shrouk Mansour</a>
+                    <a href="#" class="user-name">@shroukmansour</a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="follower">
+                    <img  src="../public/images/shrouk.jpg" alt="shrouk ">
+                    <a class="full-name">Shrouk Mansour</a>
+                    <a href="#" class="user-name">@shroukmansour</a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 <script src="../public/js/jquery-3.1.0.min.js"></script>
