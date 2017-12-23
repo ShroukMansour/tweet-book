@@ -1,0 +1,162 @@
+*{
+	padding: 0px;
+	margin:0px;
+	box-sizing: border-box;
+}
+body {
+	    background: #e6ecf0;
+   
+    font-size: 14px;
+        font-family: "Segoe UI",Arial,sans-serif;
+        padding: 0px; margin-left: 0px;
+}
+/* Start nav bar*/ 
+
+nav .container{
+	height: 100%;
+    
+    text-align: left;
+    width: auto;
+    margin-left: 50px;
+}
+nav{
+	text-align: left;
+	background-color: #ffffff;
+	border: 1px solid #ffffff; 
+	padding-bottom: 5px;
+
+}
+ li {
+	position: relative;
+	  font-weight: bolder;
+	display: inline-block;
+	margin-right: 20px;
+	margin-top: 15px;
+
+
+}
+
+ ul {
+    margin: 0;
+    padding: 0;
+     list-style-type: none;
+    
+}
+a:link {
+    color: #657786;
+     text-decoration: none;
+
+}
+
+/* visited link */
+a:visited {
+    color:#657786;;
+  	
+   
+     text-decoration: underline;
+}
+
+/* mouse over link */
+a:hover {
+    color:#1da1f2;
+     text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color:#1da1f2;
+}
+main{
+	font-family: "Segoe UI", Arial, sans-serif;
+	
+	font-style: normal;
+	font-weight: 700px;
+	/*line-height: 32px;
+	color: #ffffff;*/
+
+}
+	
+
+.container2 {
+    position: relative;
+    color: white;
+    background-image: url('49c9368c709b3b5c00c7898ffc2a7714.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 610px;
+}
+
+.front-welcome {
+    background: 0;
+    box-shadow: none;
+
+ 
+}
+.front-welcome-text{
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-weight: 600px;
+	font-style: normal;
+	font-size: 20px;
+	padding-right: 5px;
+}
+.WelcomeToTwitter{
+	padding-left: 250px;
+	padding-top: 50px;
+
+}
+
+.Form{
+	margin-top: 5px;
+	padding-left: 50px;
+	height: 500px;
+
+}
+.signup{ height: 200px; }
+.login{
+	margin-top: 15px;
+	height: 150px;
+
+}
+
+.login , .signup{
+	background-color: #ffffff;
+	padding: 10px 10px;
+	border-radius: 2px 2px;
+	width: 340px;
+}
+input[type=text], input[type=password] {
+   
+    padding: 5px 5px;
+    width: 70%;
+ 
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login input[type=submit]{
+	width: 90px;
+}
+
+.login input[type=submit],.signup input[type=submit] {
+	
+	color: #ffffff;
+	border-radius: 20px;
+	padding: 8px 8px;
+	float: right;
+	margin: 5px 12px 2px 0px;
+	    background-color: #1da1f2;
+    border: 1px solid #1da1f2;
+    color: #fff;
+    cursor: pointer;
+}
+.signup input[type=submit] : hover {
+	background-color: #006dbf;
+
+}
+
+td{
+	
+	padding-right: 15px;
+}

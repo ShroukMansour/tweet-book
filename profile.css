@@ -1,0 +1,155 @@
+*{
+	padding: 0px;
+	margin:0px;
+	box-sizing: border-box;
+}
+body {
+	    background: #e6ecf0;
+   
+    font-size: 14px;
+        font-family: "Segoe UI",Arial,sans-serif;
+}
+/* Start nav bar*/ 
+.container{
+	    position: relative;
+    width: 890px;
+    margin: 0 auto;
+}
+nav .container{
+	height: 100%;
+    
+    text-align: left;
+    width: auto;
+    margin-left: 50px;
+}
+nav{
+	text-align: left;
+	background-color: #ffffff;
+	border: 1px solid #ffffff; 
+
+}
+
+.navLeft{
+	  height: 46px;
+    overflow: hidden;
+    color: #657786;
+
+}
+ li {
+	position: relative;
+	  font-weight: bolder;
+	display: inline-block;
+	margin-right: 20px;
+	margin-top: 15px;
+
+
+}
+
+ ul {
+    margin: 0;
+    padding: 0;
+     list-style-type: none;
+    
+}
+a:link {
+    color: #657786;
+     text-decoration: none;
+
+}
+
+/* visited link */
+a:visited {
+    color:#657786;;
+  	
+   
+     text-decoration: underline;
+}
+
+/* mouse over link */
+a:hover {
+    color:#1da1f2;
+     text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color:#1da1f2;
+}
+.search : hover{
+	 border: 2px solid #1da1f2;
+    padding: 2px;
+    background-color: #f5f8fa;
+    border-radius: 25px;
+
+}
+ input[type= search]{
+	   border: 2px solid #f5f8fa;
+    padding: 2px;
+    background-color: #f5f8fa;
+    border-radius: 25px;
+
+}
+
+/* End nav bar*/ 
+
+/*******************************************************************************************************************/
+/* start main*/
+.tweetPost{
+	border: 2px solid #1da1f2;
+	   color: #fff;
+	   border-radius: 25px;
+}
+.Tweet{
+	   border: 2px solid #1da1f2;
+	   color: #fff;
+    border-radius: 25px;
+    background-color: #1da1f2;
+    float: right;
+    margin : 5px 10px 0px 0px;
+    width: 130px;
+    height: 40px;
+
+}
+
+/* */
+
+.tweet-box {
+    width: 590px;
+    height: 101px;
+    background: #e8f4fb;
+}
+.tweet-box .btn-tweet-post {
+    border: none;
+    float: right;
+    padding: 5px;
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 20px;
+    margin-top: 2px;
+}
+
+.tweet-box img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-bottom: -13px;
+    margin-right: 5px;
+    margin-top: 21px;
+}
+.tweet-box textarea {
+    height: 36px;
+    width: 506px;
+    border: none;
+    margin-top: -21px;
+    border-radius: 5px;
+    margin-left: 73px;
+}
