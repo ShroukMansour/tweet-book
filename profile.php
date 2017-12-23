@@ -19,7 +19,7 @@
 					<li><a href=""><i class="fa fa-globe"></i>Notifications</a></li>	
 					<li><a href=""><i class="fa fa-envelope-o"></i>Message</a></li>
 					<li><a href="" style="color: #1da1f2;" ><i class="fa fa-twitter" style="font-size:20px; padding-left: 250px; "></i></a></li>
-					<li style="padding-left: 125px;"><form class="search">
+					<li style="padding-left: 125px;"><form method="get" action="search.php">
 						<input type="search" name="" placeholder="search Twittbook" placeholder="fa fa-search"></form></li>
 					<li style=""><a href=""><i class="fa fa-user"></i><a></li>
 					<li style=""><a class="search"><button>Tweetbook</button><a></li>
