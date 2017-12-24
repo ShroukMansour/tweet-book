@@ -14,7 +14,8 @@ class PostController {
         post::addPost($user_id, $content, $created_at);
     }
 
-    public static function getNewsFeedTweets($user_id) {
+    public static function getNewsFeedTweets($user_id = 1) {
+        echo $user_id;
         $tweets = post::getNewsFeedTweets($user_id);
         return $tweets;
     }

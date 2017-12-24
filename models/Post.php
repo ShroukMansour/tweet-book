@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Created by PhpStorm.
+ * User: Shrouk Mansour
+ * Date: 22-Dec-17
+ * Time: 19:30
+ */
 require_once 'Config.php';
 class Post {
     static public function addPost($user_id, $content, $created_at) {
@@ -20,11 +27,15 @@ class Post {
     }
     static public function getNewsFeedTweets($user_id)  {
         $conn = connection::createConnection();
-        $query = "SELECT * FROM `post`, `friend`, `user` WHERE `user`.`id` = {$user_id} and `friend`.`user_id` = '{$user_id}' and `post`.`user_id` = `friend`.`friend_id`";
+        $query = "SELECT * FROM post, friend, user WHERE `user`.`id` = $user_id and `friend`.`user_id` = $user_id and `post`.`user_id` = `friend`.`friend_id`";
         mysql_set_charset("UTF8");
         header('Content-type: text/html; charset=utf-8');
         $conn->set_charset('UTF8');
         $result = $conn->query($query);
+        echo "ree,";
+        if (!$result) {
+            throw new Exception("Database Error ");
+}
         connection::closeConnection($conn);
         return $result;
     }

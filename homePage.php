@@ -1,12 +1,14 @@
 <?php
-require_once __DIR__."/controllers/PostController.php";
-require_once ('models/UserModel.php');
+require_once "controllers/PostController.php";
+require_once 'models/UserModel.php';
 session_start();
     if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['username'])) {
-        $user_id = UserModel::getUserID($_SESSION['username']);
+        //$user_id = UserModel::getUserID($_SESSION['username']);
+        $user_id = 1;
         PostController::addPost($user_id,$_POST['tweet-content']);
     }
-$user_id = UserModel::getUserID($_SESSION['username']);
+//$user_id = UserModel::getUserID($_SESSION['username']);
+$user_id = 2;
 $tweets = PostController::getNewsFeedTweets($user_id);
 ?>
 <!doctype html>
@@ -19,7 +21,8 @@ $tweets = PostController::getNewsFeedTweets($user_id);
     <title>Twitter</title>
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/font-awesome.min.css">
-    <link rel="stylesheet" href="public/css/homepage2.css">
+     <link rel="stylesheet" href="public/css/homepage.css">
+
 </head>
 <body>
 
@@ -73,15 +76,13 @@ $tweets = PostController::getNewsFeedTweets($user_id);
     <div class="row">
         <div class="col-md-3 dashboard-profile-card">
             <div class="dashboard-profile-card-bg">
-                <img  src="../public/images/eva.jpg" alt="shrouk ">
+                <img  src="public/images/eva.jpg" alt="shrouk ">
             </div>
             <div class="dashboard-profile-card-profile">
-                <img  src="../public/images/shrouk.jpg" alt="shrouk ">
+                <img  src="public/images/shrouk.jpg" alt="shrouk ">
             </div>
             <div class="info">
-             <a href="/tweetbook/profile.php"<?php echo $_SESSION['profileName'] = getUserName($_SESSION['username']);
-                echo $_SESSION['profileID'] = $_SESSION['username']; 
-                ?> class="name">Shrouk Mansour</a>
+             <a href="/tweetbook/profile.php"  class="name">Shrouk Mansour</a>
                 <a href="#" class="user_name">@shroukmansour99</a>
             </div>
             <div class="profile-stats">
@@ -117,11 +118,6 @@ $tweets = PostController::getNewsFeedTweets($user_id);
                 <div class="tweet">
                     <div class="tweet-info">
                         <img class="user-tweet-img" src="../public/images/shrouk.jpg" alt="">
-                        
-                        <a href="/tweetbook/profile.php"<?php echo $_SESSION['profileName'] = $tweeta['name'];
-                            echo $_SESSION['profileID'] = getUserID($_SESSION['username']); 
-                            echo $_SESSION['profileID'] = getUserID($tweeta['username']);                             
-                            ?> class="name"><?php echo  $tweeta['name'];?</a>
                         <a href="#" class="user-tweet-name"><?php echo  $tweeta['name'];?></a>
                         <a href="#" class="user-tweet-user-name"><?php echo  $tweeta['email'];?></a>
                         <a href="#" class="user-tweet-date">
@@ -133,9 +129,7 @@ $tweets = PostController::getNewsFeedTweets($user_id);
                                     echo $time;
                                 else
                                     echo $date;
-
                             ?>
-
                         </a>
                     </div>
                     <div class="tweet-post">
@@ -147,7 +141,30 @@ $tweets = PostController::getNewsFeedTweets($user_id);
 
 
 
-        <div class="col-md-3">teset</div>
+        <div class="col-md-3">
+            <div class="who-to-follow">
+                <h3>Who to follow</h3>
+                <div class="follower">
+                    <img  src="public/images/shrouk.jpg" alt="shrouk ">
+                    <a class="full-name">Shrouk Mansour</a>
+                    <a href="#" class="user-name">@shroukmansour</a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="follower">
+                    <img  src="public/images/shrouk.jpg" alt="shrouk ">
+                    <a class="full-name">Shrouk Mansour</a>
+                    <a href="#" class="user-name">@shroukmansour</a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="follower">
+                    <img  src="public/images/shrouk.jpg" alt="shrouk ">
+                    <a class="full-name">Shrouk Mansour</a>
+                    <a href="#" class="user-name">@shroukmansour</a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 <script src="../public/js/jquery-3.1.0.min.js"></script>

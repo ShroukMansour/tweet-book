@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <?php
 
 require_once ('/opt/lampp/htdocs/tweetbook/controllers/UserController.php');
@@ -8,3 +10,4 @@ for($i = 0; $i < sizeof($s);$i++) {
     echo "<br>";
 }
 ?>
+>>>>>>> 9b39c8ccc40a8ac466f47fa622fb2db3f175da43
