@@ -1,18 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Shrouk Mansour
- * Date: 22-Dec-17
- * Time: 12:23
- */
-require_once '../controllers/PostController.php';
-    if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
-         PostController::addPost($_POST['tweet-content']);
+require_once __DIR__."/controllers/PostController.php";
+session_start();
+    if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['username'])) {
+        $id = UserModel::getUserID($_SESSION['username']);
+        PostController::addPost($id,$_POST['tweet-content']);
     }
     $user_id = 1;
     $tweets = PostController::getNewsFeedTweets($user_id);
-
-
 ?>
 
 <!doctype html>
@@ -85,7 +79,7 @@ require_once '../controllers/PostController.php';
                 <img  src="../public/images/shrouk.jpg" alt="shrouk ">
             </div>
             <div class="info">
-                <a href="#" class="name">Shrouk Mansour</a>
+                <a href="/tweetbook/profile.php" class="name">Shrouk Mansour</a>
                 <a href="#" class="user_name">@shroukmansour99</a>
             </div>
             <div class="profile-stats">

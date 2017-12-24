@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 /**
  * Created by PhpStorm.
  * User: Shrouk Mansour
@@ -6,36 +7,35 @@
  * Time: 19:30
  */
 require_once '../Config.php';
-class Post
-{
-    private $id;
-    private $user_id = 1;
-    private $content;
-    private $created_at;
-
-    public function addPost($user_id, $content, $created_at)
-    {
-        $connection = new connection();
-        $conn = $connection->createConnection();
-
-        $q = "INSERT INTO `post` ( `user_id`, `content`, `tweeted_at`) VALUES ( '{$user_id}', '{$content}', '{$created_at}');";
-        if (!$conn ->query($q)) {
+class Post {
+    static public function addPost($user_id, $content, $created_at) {
+        $conn = connection::createConnection();
+        $query = "INSERT INTO `post` ( `user_id`, `content`, `tweeted_at`) VALUES ( '{$user_id}', '{$content}', '{$created_at}');";
+        if (!$conn ->query($query)) {
             echo "INSERT failed: (" . $conn ->errno . ") " . $conn ->error;
-        }
-        $connection->closeConnection();
+        } else
+            echo "done";
+        connection::closeConnection($conn);
     }
-
-    public function getNewsFeedTweets($user_id)
-    {
-        $connection = new connection();
-        $conn = $connection->createConnection();
-        $q = "SELECT DISTINCT * FROM `user`, `friend`,`post` WHERE (friend.user_id = {$user_id} and post.user_id = friend.friend_id 
-                and user.id = friend.friend_id) or user.id = post.user_id ORDER BY `post`.`tweeted_at` DESC";
+    static function getPostsOfUser($user_id) {
+        $query = "SELECT friend_id FROM friend WHERE user_id = $user_id";
+        $conn = connection::createConnection();
+        $result = $conn->query($query);
+        connection::closeConnection($conn);
+        $contents = array();
+            while ($row = $result->fetch_assoc()) {
+                array_push($contents, $row['content']);
+            }
+        return $contents;
+    }
+    static public function getNewsFeedTweets($user_id)  {
+        $conn = connection::createConnection();
+        $query = "SELECT * FROM `post`, `friend`, `user` WHERE `user`.`id` = {$user_id} and `friend`.`user_id` = '{$user_id}' and `post`.`user_id` = `friend`.`friend_id`";
         mysql_set_charset("UTF8");
         header('Content-type: text/html; charset=utf-8');
         $conn->set_charset('UTF8');
-        $result = $conn->query($q);
-        $connection->closeConnection();
+        $result = $conn->query($query);
+        connection::closeConnection($conn);
 //        while ( $tweeta = $result->fetch_assoc())
 //            echo $tweeta['content'];
         return $result;
