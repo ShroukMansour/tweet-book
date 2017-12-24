@@ -1,4 +1,17 @@
-
+<?php
+require_once ('controllers/PostController.php');
+require_once ('models/UserModel.php');
+session_start();
+ if (isset($_POST['submit']) && isset($_SESSION['username'])) {
+     $id = UserModel::getUserID($_SESSION['username']);
+     ///PostController::addPost($id,$_POST['tweet-content']);
+     $tweets= PostController::getPostsOfUser($_SESSION['username']);
+    for($i = 0; $i < sizeof($tweets);$i++) {
+        echo $tweets[$i];
+        echo "<br>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -7,18 +7,19 @@
  */
 require_once __DIR__."/../models/Post.php";
 class PostController {
-    static function addPost($post_content) {
-        $post = new Post();
-        $user_id = 1;
+    static function addPost($user_id, $post_content) {
         $content = $post_content;
         $created_at = date('Y-m-d H:i:s');
         echo "from controller" . $content;
-        $post->addPost($user_id, $content, $created_at);
+        post::addPost($user_id, $content, $created_at);
     }
 
     public static function getNewsFeedTweets($user_id) {
-        $post = new Post();
-        $tweets = $post->getNewsFeedTweets($user_id);
+        $tweets = post::getNewsFeedTweets($user_id);
+        return $tweets;
+    }
+     public static function getPostsOfUser($user_id) {
+        $tweets = post::getPostsOfUser($user_id);
         return $tweets;
     }
 }

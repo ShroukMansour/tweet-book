@@ -1,8 +1,8 @@
 <?php
-include "/opt/lampp/htdocs/tweetbook/Config.php";
+require_once 'Config.php';
 class UserModel {
     static public function checkIfUserExsits($user_name, $password) {
-        $conn = connection::conncreateConnection();
+        $conn = connection::createConnection();
         $username = mysqli_real_escape_string($conn, $user_name);
         $password = mysqli_real_escape_string($conn, $password); 
         $sql = "SELECT id FROM user WHERE name = '$username' and password = '$password'";
@@ -13,10 +13,22 @@ class UserModel {
             return true;
         return false;
     }
+    
     static public function getUserFollowers($ID) {
         $query = "SELECT friend_id from friend where user_id = $ID";
         $followers = UserModel::getFromDB($query, 'friend_id');
         return $followers;
+    }
+      static public function getUserID($user_name) {
+        $query = "SELECT id FROM user WHERE name = '$user_name'";
+        $conn = connection::createConnection();
+        $result = $conn->query($query);
+        $array_id= "";
+        while($row = $result->fetch_assoc()) {
+            $array_name =  $row["id"];
+        }
+        connection::closeConnection($conn);
+        return $array_id;
     }
     static public function getUserName($ID) {
         $query = "SELECT name from user where id = $ID";

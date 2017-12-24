@@ -1,8 +1,8 @@
 <?php
-include ('/opt/lampp/htdocs/tweetbook/Pair.php');
-include ('/opt/lampp/htdocs/tweetbook/models/UserModel.php');
+require_once ('Pair.php');
+require_once ('models/UserModel.php');
 class UserController {
-  
+
  static function follow($userID, $followerID) {
      User::insertFriend($userID,$followerID);
  }
@@ -12,6 +12,7 @@ class UserController {
      return $followers;
  }
 static function suggestFollowers($userID) {
+     echo "suggestFriend"."<br>";
     $followers = UserController::showFollowers($userID);
     //ordered according to number of msgs between the follower and user
     $orderedFollowers = array();
@@ -47,6 +48,7 @@ static function suggestFollowers($userID) {
         return false;
     }
     static function search($userID, $name) {
+        echo "search"."<br>";
         $followers = UserController::showFollowers($userID);
         $sugestedFollowers = array();
         $markFollowers = array();
@@ -68,17 +70,7 @@ static function suggestFollowers($userID) {
     }
         return $sugestedFollowers;   
     }
- 
- static function login($user_name, $password) {
-     $userExisits = UserModel::checkIfUserExsits($user_name, $password);
-     if($userExisits) {
-        UserController::createSessions($user_name, $password);
-        header("Location: homePage.php");
-        exit;
-      } else {
-         echo "Your Login Name or Password is invalid";
-      }
- }
+
  static function signup($full_name,$username,$password){
      $user = new User();
      $userExisits = $user->checkIfUserExsits($username, $password);
@@ -102,33 +94,40 @@ static function suggestFollowers($userID) {
              echo "user not inserted in db";
          }
  }
- static function logout($username, $password){
-     session_start();
+    
+ static function login($user_name, $password) {
+     $userExisits = UserModel::checkIfUserExsits($user_name, $password);
+     if($userExisits) {
+         echo "hey";
+        UserController::createSessions($user_name, $password);
+        header("Location: homePage.php");
+        exit;
+      } else {
+         echo "Your Login Name or Password is invalid";
+      }
+ }
+ static function logout($username, $password) { 
      UserController::clearsessionscookies($username, $password) ;
      header("Location: welcome.php");
  }
     function clearsessionscookies($username,$password) {
-        unset($_SESSION['username']);
-        unset($_SESSION['password']);
-
+        session_start();
         session_unset();
         session_destroy();
-
-
-            setcookie("TweetbookUsername", $username, time() - 60 * 60 * 30);
-            setcookie("TweetbookPassword", $password, time() - 60 * 60 * 30);
-            return;
+        setcookie("TweetbookUsername", $username, time() - 60 * 60 * 30);
+        setcookie("TweetbookPassword", $password, time() - 60 * 60 * 30);
+        return;
     }
-    static function createSessions($username, $password)  { 
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = md5($password);
-
+    static function createSessions($username, $password)  {
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = md5($password);
         if(isset($_POST['rememberme'])) 
         { 
             setcookie("TweetbookUsername", $_SESSION['username'], time() + 60 * 60 * 30); 
             setcookie("TweetbookPassword", $_SESSION['password'], time() + 60 * 60 * 30); 
-            return; 
         } 
+        session_write_close();
     } 
 }
 ?>
