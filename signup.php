@@ -39,6 +39,5 @@ if (empty($_POST['fname']) || empty($_POST['uname']) || empty($_POST['psw'])) {
         }
     }
 
-mysql_close($con);
 
 ?>
