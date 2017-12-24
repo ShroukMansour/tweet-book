@@ -9,8 +9,8 @@ require_once 'Config.php';
 class Post {
     static public function addPost($user_id, $content, $created_at) {
         $conn = connection::createConnection();
-        $q = "INSERT INTO `post` ( `user_id`, `content`, `tweeted_at`) VALUES ( '{$user_id}', '{$content}', '{$created_at}');";
-        if (!$conn ->query($q)) {
+        $query = "INSERT INTO `post` ( `user_id`, `content`, `tweeted_at`) VALUES ( '{$user_id}', '{$content}', '{$created_at}');";
+        if (!$conn ->query($query)) {
             echo "INSERT failed: (" . $conn ->errno . ") " . $conn ->error;
         } else
             echo "done";
@@ -20,13 +20,13 @@ class Post {
         $query = "SELECT content FROM post WHERE user_id = $user_id";
         $conn = connection::createConnection();
         $result = $conn->query($query);
+        connection::closeConnection($conn);
         $contents = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($contents, $row["content"]);
+                array_push($contents, $row['content']);
             }
         }
-        connection::closeConnection($conn);
         return $contents;
     }
     
@@ -41,12 +41,6 @@ class Post {
         connection::closeConnection($conn);
 //        while ( $tweeta = $result->fetch_assoc())
 //            echo $tweeta['content'];
-        $contents = array();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                array_push($contents, $row["content"]);
-            }
-        }
         return $result;
     }
 }
