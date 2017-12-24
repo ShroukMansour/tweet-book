@@ -1,14 +1,14 @@
 <?php
 require_once __DIR__."/controllers/PostController.php";
+require_once ('models/UserModel.php');
 session_start();
     if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['username'])) {
-        $id = UserModel::getUserID($_SESSION['username']);
-        PostController::addPost($id,$_POST['tweet-content']);
+        $user_id = UserModel::getUserID($_SESSION['username']);
+        PostController::addPost($user_id,$_POST['tweet-content']);
     }
-    $user_id = 1;
-    $tweets = PostController::getNewsFeedTweets($user_id);
+$user_id = UserModel::getUserID($_SESSION['username']);
+$tweets = PostController::getNewsFeedTweets($user_id);
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -79,7 +79,9 @@ session_start();
                 <img  src="../public/images/shrouk.jpg" alt="shrouk ">
             </div>
             <div class="info">
-                <a href="/tweetbook/profile.php" class="name">Shrouk Mansour</a>
+             <a href="/tweetbook/profile.php"<?php echo $_SESSION['profileName'] = getUserName($_SESSION['username']);
+                echo $_SESSION['profileID'] = $_SESSION['username']; 
+                ?> class="name">Shrouk Mansour</a>
                 <a href="#" class="user_name">@shroukmansour99</a>
             </div>
             <div class="profile-stats">
@@ -115,6 +117,11 @@ session_start();
                 <div class="tweet">
                     <div class="tweet-info">
                         <img class="user-tweet-img" src="../public/images/shrouk.jpg" alt="">
+                        
+                        <a href="/tweetbook/profile.php"<?php echo $_SESSION['profileName'] = $tweeta['name'];
+                            echo $_SESSION['profileID'] = getUserID($_SESSION['username']); 
+                            echo $_SESSION['profileID'] = getUserID($tweeta['username']);                             
+                            ?> class="name"><?php echo  $tweeta['name'];?</a>
                         <a href="#" class="user-tweet-name"><?php echo  $tweeta['name'];?></a>
                         <a href="#" class="user-tweet-user-name"><?php echo  $tweeta['email'];?></a>
                         <a href="#" class="user-tweet-date">
@@ -129,11 +136,9 @@ session_start();
 
                             ?>
 
-
                         </a>
                     </div>
                     <div class="tweet-post">
-
                         <?php echo  $tweeta['content'];?>
                     </div>
                 </div>

@@ -3,23 +3,20 @@ require_once 'Config.php';
 class Post {
     static public function addPost($user_id, $content, $created_at) {
         $conn = connection::createConnection();
-        $query = "INSERT INTO `post` ( `user_id`, `content`, `tweeted_at`) VALUES ( '{$user_id}', '{$content}', '{$created_at}');";
+        echo $created_at;
+        $query = "INSERT INTO `post` (`user_id`, `content`, `tweeted_at`) VALUES ( '{$user_id}', '{$content}', '{$created_at}');";
         if (!$conn ->query($query)) {
             echo "INSERT failed: (" . $conn ->errno . ") " . $conn ->error;
         } else
             echo "done";
         connection::closeConnection($conn);
     }
-    static function getPostsOfUser($user_id) {
-        $query = "SELECT friend_id FROM friend WHERE user_id = $user_id";
+    static function getPostsOfUser($id) {
+        $query = "SELECT * FROM post WHERE user`.`id` = $id";
         $conn = connection::createConnection();
         $result = $conn->query($query);
         connection::closeConnection($conn);
-        $contents = array();
-            while ($row = $result->fetch_assoc()) {
-                array_push($contents, $row['content']);
-            }
-        return $contents;
+        return $result;
     }
     static public function getNewsFeedTweets($user_id)  {
         $conn = connection::createConnection();
@@ -29,8 +26,6 @@ class Post {
         $conn->set_charset('UTF8');
         $result = $conn->query($query);
         connection::closeConnection($conn);
-//        while ( $tweeta = $result->fetch_assoc())
-//            echo $tweeta['content'];
         return $result;
     }
 }

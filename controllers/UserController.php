@@ -68,7 +68,7 @@ static function suggestFollowers($userID) {
             }
         }
     }
-        $sugestedFollowersInfo = new array();
+        $sugestedFollowersInfo = array();
         for($i = 0; $i < sizeof ($sugestedFollowers); $i++) {
             array_push($sugestedFollowersInfo,UserModel::getUserInfo($sugestedFollowers[$i]));
         }

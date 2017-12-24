@@ -5,12 +5,12 @@
  * Date: 22-Dec-17
  * Time: 19:17
  */
-require_once __DIR__."/../models/Post.php";
+require_once "models/Post.php";
 class PostController {
     static function addPost($user_id, $post_content) {
         $content = $post_content;
         $created_at = date('Y-m-d H:i:s');
-        echo "from controller" . $content;
+        echo $created_at;
         post::addPost($user_id, $content, $created_at);
     }
 

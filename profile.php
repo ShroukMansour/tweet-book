@@ -2,14 +2,13 @@
 require_once ('controllers/PostController.php');
 require_once ('models/UserModel.php');
 session_start();
- if (isset($_POST['submit']) && isset($_SESSION['username'])) {
+if (isset($_POST['submit'])) {
      $id = UserModel::getUserID($_SESSION['username']);
-     ///PostController::addPost($id,$_POST['tweet-content']);
-     $tweets= PostController::getPostsOfUser($_SESSION['username']);
-    for($i = 0; $i < sizeof($tweets);$i++) {
-        echo $tweets[$i];
-        echo "<br>";
-    }
+     ///PostController::addPost($id,$_POST['tweet-content']); 
+}
+if(isset($_SESSION['username'])){
+    $id = UserModel::getUserID($_SESSION['username']);
+    $tweets= PostController::getPostsOfUser($_SESSION['username']);
 }
 ?>
 <!DOCTYPE html>
@@ -82,13 +81,33 @@ session_start();
             <div class="tweet">
                 <div class="tweet-info">
                     <img class="user-tweet-img" src="../public/images/shrouk.jpg" alt="">
-                    <a href="#" class="user-tweet-name">shrouk mansour</a>
+                    <a href="#" class="user-tweet-name">@shroukmansour<</a>
                     <a href="#" class="user-tweet-user-name">@shroukmansour99</a>
                     <a href="#" class="user-tweet-date">30:95</a>
                 </div>
+                 <?php while ($tweeta = $tweets->fetch_assoc()){?>
                 <div class="tweet-post">
-                    وَمَا خَلَقْنَا السَّمَاء وَالأَرْضَ وَمَا بَيْنَهُمَا لاعِبِينَ
+                    <div class="tweet-info">
+                        <img class="user-tweet-img" src="../public/images/shrouk.jpg" alt="">
+                        <a href="#" class="user-tweet-name"><?php echo  $tweeta['name'];?></a>
+                        <a href="#" class="user-tweet-user-name"><?php echo  $tweeta['email'];?></a>
+                        <a href="#" class="user-tweet-date">
+                            <?php
+                                $dt = new DateTime($tweeta['tweeted_at']);
+                                $date = $dt->format('m/d');
+                                $time = $dt->format('H:i');
+                                if ($date == date('m/d'))
+                                    echo $time;
+                                else
+                                    echo $date;
+                            ?>
+                        </a>
+                    </div>
+                    <div class="tweet-post">
+                        <?php echo  $tweeta['content'];?>
+                    </div>
                 </div>
+            <?php } ?>
             </div>
         </div>
 
