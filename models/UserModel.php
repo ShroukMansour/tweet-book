@@ -41,6 +41,12 @@ class UserModel {
         connection::closeConnection($conn);
         return $array_name;
     }
+     static public function getUserInfo($ID) {
+        $query = "SELECT id,name,email from user where id = $ID";
+        $conn = connection::createConnection();
+        $result = $conn->query($query);
+        return $result;
+     }
      static public function checkThatFriendOfFriendNotYourFriend($friendOfFriendID,$userID) {
         $query = "SELECT friend_id from friend where friend_id = $friendOfFriendID and user_id = $userID";
         $friend = UserModel::getFromDB($query, 'friend_id');
@@ -53,12 +59,12 @@ class UserModel {
         $conn->query($query);
         connection::closeConnection($conn);
     }
-      static function getFromDB($sql,$rowI) {
+      static function getFromDB($query,$rowI) {
         $conn = connection::createConnection();
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
-        $result = $conn->query($sql);
+        $result = $conn->query($query);
         $followers = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

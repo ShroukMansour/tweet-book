@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Shrouk Mansour
- * Date: 22-Dec-17
- * Time: 19:30
- */
 require_once 'Config.php';
 class Post {
     static public function addPost($user_id, $content, $created_at) {
@@ -17,20 +11,16 @@ class Post {
         connection::closeConnection($conn);
     }
     static function getPostsOfUser($user_id) {
-        $query = "SELECT content FROM post WHERE user_id = $user_id";
+        $query = "SELECT friend_id FROM friend WHERE user_id = $user_id";
         $conn = connection::createConnection();
         $result = $conn->query($query);
         connection::closeConnection($conn);
         $contents = array();
-        if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 array_push($contents, $row['content']);
             }
-        }
         return $contents;
     }
-    
-
     static public function getNewsFeedTweets($user_id)  {
         $conn = connection::createConnection();
         $query = "SELECT * FROM `post`, `friend`, `user` WHERE `user`.`id` = {$user_id} and `friend`.`user_id` = '{$user_id}' and `post`.`user_id` = `friend`.`friend_id`";

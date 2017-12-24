@@ -68,7 +68,11 @@ static function suggestFollowers($userID) {
             }
         }
     }
-        return $sugestedFollowers;   
+        $sugestedFollowersInfo = new array();
+        for($i = 0; $i < sizeof ($sugestedFollowers); $i++) {
+            array_push($sugestedFollowersInfo,UserModel::getUserInfo($sugestedFollowers[$i]));
+        }
+        return $sugestedFollowersInfo;   
     }
 
  static function signup($full_name,$username,$password){
