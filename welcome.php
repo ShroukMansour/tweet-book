@@ -1,11 +1,19 @@
 <?php
+session_start();
 
 include "controllers/UserController.php";
-if (isset($_POST['login']) && $_SERVER["REQUEST_METHOD"] == "POST") {
-    UserController::login($_POST['uname'], $_POST['psw']);
 
+if (isset($_POST['login']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION['username'] = $_POST['uname'];
+    if(isset($_POST['rememberme']))
+    {
+        setcookie("TweetbookUsername", $_SESSION['username'], time() + 60 * 60 * 30);
+        setcookie("TweetbookPassword", $_SESSION['password'], time() + 60 * 60 * 30);
+    }
+    UserController::login($_POST['uname'], $_POST['psw']);
 }
 if (isset($_POST['signup']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION['username'] = $_POST['uname'];
     UserController::signup($_POST['fname'],$_POST['uname'], $_POST['psw']);
 
 }

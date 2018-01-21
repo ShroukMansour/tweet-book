@@ -1,6 +1,107 @@
+/* Start nav bar*/
+
 body {
     background: #e6ecf0;
 }
+nav .container{
+    text-align: left;
+    width: auto;
+    margin-left: 50px;
+}
+nav{
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+nav li {
+    position: relative;
+    font-weight: bolder;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 15px;
+
+
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-top: -7px;
+}
+nav a:link {
+    color: #657786;
+    text-decoration: none;
+
+}
+nav img {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+}
+/* visited link */
+nav a:visited {
+    color:#657786;;
+
+
+    text-decoration: underline;
+}
+
+/* mouse over link */
+nav a:hover {
+    color:#1da1f2;
+    text-decoration: underline;
+}
+
+
+/* selected link */
+nav a:active {
+    color:#1da1f2;
+}
+nav .nav-tweet-btn {
+    width: 74px;
+    height: 34px;
+    border: none;
+    float: right;
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 20px;
+    margin-top: 14px;
+    color: #fff;
+    background-color: #48aae6;
+}
+nav input[type=search] {
+    background-color: #f5f8fa;
+    border-radius: 21px;
+    border: 1px solid #e6ecf0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #14171a;
+    display: block;
+    font-size: 12px;
+    height: 32px;
+    line-height: 16px;
+    padding: 8px 32px 8px 12px;
+    transition: all .2s ease-in-out;
+    width: 100%;
+}
+
+
+
+
+
+
+
 
 .dashboard-profile-card {
     background: #fff;

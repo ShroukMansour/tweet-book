@@ -76,8 +76,7 @@ static function suggestFollowers($userID) {
     }
 
  static function signup($full_name,$username,$password){
-     $user = new User();
-     $userExisits = $user->checkIfUserExsits($username, $password);
+     $userExisits = UserModel::checkIfUserExsits($username, $password);
      if($userExisits) {
          echo "User name is already taken";
      }
@@ -85,13 +84,12 @@ static function suggestFollowers($userID) {
          echo "Only letters and numbers are allowed";
      }
      else{
-         $checkInsertion =$user->insertUser($full_name,$username,$password);
+         $checkInsertion = UserModel::insertUser($full_name, $username, $password);
      }
          if ($checkInsertion)
          {
              UserController::createSessions($username, $password);
              header("Location: homePage.php");
-
          }
          else
          {
@@ -103,7 +101,7 @@ static function suggestFollowers($userID) {
      $userExisits = UserModel::checkIfUserExsits($user_name, $password);
      if($userExisits) {
          echo "hey";
-        UserController::createSessions($user_name, $password);
+        //UserController::createSessions($user_name, $password);
         header("Location: homePage.php");
         exit;
       } else {
@@ -120,18 +118,19 @@ static function suggestFollowers($userID) {
         session_destroy();
         setcookie("TweetbookUsername", $username, time() - 60 * 60 * 30);
         setcookie("TweetbookPassword", $password, time() - 60 * 60 * 30);
+
         return;
     }
     static function createSessions($username, $password)  {
-        session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['password'] = md5($password);
-        if(isset($_POST['rememberme'])) 
-        { 
-            setcookie("TweetbookUsername", $_SESSION['username'], time() + 60 * 60 * 30); 
-            setcookie("TweetbookPassword", $_SESSION['password'], time() + 60 * 60 * 30); 
-        } 
-        session_write_close();
+//        session_start();
+//        $_SESSION['username'] = $username;
+//        $_SESSION['password'] = md5($password);
+//        if(isset($_POST['rememberme']))
+//        {
+//            setcookie("TweetbookUsername", $_SESSION['username'], time() + 60 * 60 * 30);
+//            setcookie("TweetbookPassword", $_SESSION['password'], time() + 60 * 60 * 30);
+//        }
+//        session_write_close();
     } 
 }
 ?>

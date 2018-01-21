@@ -1,15 +1,18 @@
 <?php
+session_start();
+
 require_once "controllers/PostController.php";
 require_once 'models/UserModel.php';
-session_start();
-    if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['username'])) {
-        //$user_id = UserModel::getUserID($_SESSION['username']);
-        $user_id = 1;
+    if (isset($_SESSION['username'])  ) {
+        $user_id = UserModel::getUserID($_SESSION['username']);
+        $user = UserModel::getUserInfo($user_id);
+    }
+    if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST" ) {
         PostController::addPost($user_id,$_POST['tweet-content']);
     }
 //$user_id = UserModel::getUserID($_SESSION['username']);
-$user_id = 2;
 $tweets = PostController::getNewsFeedTweets($user_id);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,49 +29,37 @@ $tweets = PostController::getNewsFeedTweets($user_id);
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Moments</a></li>
-                <li><a href="#">Notifications</a></li>
-                <li><a href="#">Messages</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <button class="btn-info">Tweet</button>
-
+<nav>
+    <div class="container" >
+        <div style="display: inline-block; " class="navLeft">
+            <ul>
+                <li><a href="" style=""><i class="fa fa-home"></i> Home</a></li>
+                <li><a href=""> <i class="fa fa-flash" style="background-repeat: no-repeat;"></i> Moment</a></li>
+                <li><a href=""><i class="fa fa-globe"></i> Notifications</a></li>
+                <li><a href=""><i class="fa fa-envelope-o"></i> Message</a></li>
+                <li><a href="" style="color: #1da1f2;" ><i class="fa fa-twitter" style="font-size:20px; padding-left: 250px; "></i></a></li>
+                <li style="padding-left: 125px;">
+                    <a class="search">
+                        <input type="search" name="" placeholder="Search Tweetbook" placeholder="fa fa-search">
+                    <a>
+                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img  src="public/images/shrouk.jpg" alt="shrouk ">
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a href="views/profile.php">Profile</a></li>
+                        <li><a href="logout.php">Log out</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+                <button class="nav-tweet-btn">Tweet</button>
             </ul>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+
+    </div>
 </nav>
 
 
@@ -82,8 +73,8 @@ $tweets = PostController::getNewsFeedTweets($user_id);
                 <img  src="public/images/shrouk.jpg" alt="shrouk ">
             </div>
             <div class="info">
-             <a href="/tweetbook/profile.php"  class="name">Shrouk Mansour</a>
-                <a href="#" class="user_name">@shroukmansour99</a>
+             <a href="/tweetbook/profile.php"  class="name"><?php echo $user['name'];?></a>
+                <a href="#" class="user_name">@<?php echo $user['email'];?></a>
             </div>
             <div class="profile-stats">
                 <ul>
@@ -105,7 +96,7 @@ $tweets = PostController::getNewsFeedTweets($user_id);
 
         <div class="col-md-6">
             <div class="tweet-box">
-                <img src="../public/images/shrouk.jpg" alt="">
+                <img src="public/images/shrouk.jpg" alt="">
                 <form action="#" method="post">
                     <textarea name="tweet-content" id="tweet-content" cols="30" rows="2" placeholder="What's happening?">
                     </textarea>
@@ -116,11 +107,12 @@ $tweets = PostController::getNewsFeedTweets($user_id);
             <?php while ( $tweeta = $tweets->fetch_assoc()){?>
 
                 <div class="tweet">
-                    <div class="tweet-info">
-                        <img class="user-tweet-img" src="../public/images/shrouk.jpg" alt="">
+                    <div class="tweet-info" id="tweet-info">
+                        <img class="user-tweet-img" src="public/images/shrouk.jpg" alt="">
                         <a href="#" class="user-tweet-name"><?php echo  $tweeta['name'];?></a>
                         <a href="#" class="user-tweet-user-name"><?php echo  $tweeta['email'];?></a>
                         <a href="#" class="user-tweet-date">
+                            <span class="caret"></span>
                             <?php
                                 $dt = new DateTime($tweeta['tweeted_at']);
                                 $date = $dt->format('m/d');
@@ -132,7 +124,7 @@ $tweets = PostController::getNewsFeedTweets($user_id);
                             ?>
                         </a>
                     </div>
-                    <div class="tweet-post">
+                    <div class="tweet-post" id="tweet-post">
                         <?php echo  $tweeta['content'];?>
                     </div>
                 </div>
@@ -167,8 +159,9 @@ $tweets = PostController::getNewsFeedTweets($user_id);
         </div>
     </div>
 </div>
-<script src="../public/js/jquery-3.1.0.min.js"></script>
-<script src="../public/js/bootstrap.min.js"></script>
-<script src="../public/js/main.js"></script>
+<script src="public/js/jquery-3.1.0.min.js"></script>
+<script src="public/js/bootstrap.min.js"></script>
+<script src="public/js/main.js"></script>
+<script src="public/js/homePageTweets.js"></script>
 </body>
 </html>

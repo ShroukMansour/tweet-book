@@ -20,15 +20,17 @@ class UserModel {
         return $followers;
     }
       static public function getUserID($user_name) {
-        $query = "SELECT id FROM user WHERE name = '$user_name'";
         $conn = connection::createConnection();
+        echo $user_name;
+        $query = "SELECT id FROM user WHERE name = '$user_name'";
         $result = $conn->query($query);
         $array_id= "";
         while($row = $result->fetch_assoc()) {
             $array_name =  $row["id"];
         }
+        echo $array_name;
         connection::closeConnection($conn);
-        return $array_id;
+        return $array_name;
     }
     static public function getUserName($ID) {
         $query = "SELECT name from user where id = $ID";
@@ -45,7 +47,8 @@ class UserModel {
         $query = "SELECT id,name,email from user where id = $ID";
         $conn = connection::createConnection();
         $result = $conn->query($query);
-        return $result;
+        $row = $result->fetch_assoc();
+        return $row;
      }
      static public function checkThatFriendOfFriendNotYourFriend($friendOfFriendID,$userID) {
         $query = "SELECT friend_id from friend where friend_id = $friendOfFriendID and user_id = $userID";

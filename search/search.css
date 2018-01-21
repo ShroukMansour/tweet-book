@@ -1,0 +1,424 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+body {
+        background: #e6ecf0;
+   
+    font-size: 14px;
+        font-family: "Segoe UI",Arial,sans-serif;
+}
+/* Start nav bar*/ 
+.container{
+        position: relative;
+    width: 890px;
+    margin: 0 auto;
+}
+nav .container{
+    height: 100%;
+    
+    text-align: left;
+    width: auto;
+    margin-left: 50px;
+}
+nav{
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #ffffff; 
+
+}
+
+.navLeft{
+      height: 46px;
+    overflow: hidden;
+    color: #657786;
+
+}
+nav li {
+    position: relative;
+      font-weight: bolder;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 15px;
+
+
+}
+
+ nav ul {
+    margin: 0;
+    padding: 0;
+     list-style-type: none;
+    
+}
+footer a ,nav a:link {
+    color: #657786;
+     text-decoration: none;
+
+}
+
+/* visited link */
+nav a:visited {
+    color:#657786;;
+    
+   
+     text-decoration: underline;
+}
+
+/* mouse over link */
+nav a:hover {
+    color:#1da1f2;
+     text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color:#1da1f2;
+}
+.search : hover{
+     border: 2px solid #1da1f2;
+    padding: 2px;
+    background-color: #f5f8fa;
+    border-radius: 25px;
+
+}
+ input[type= search]{
+       border: 2px solid #f5f8fa;
+    padding: 2px;
+    background-color: #f5f8fa;
+    border-radius: 25px;
+
+}
+input[type=search] {
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    background-size: 10px 8px;
+}
+/* End nav bar*/ 
+
+
+/* Start Search left */ 
+.searchFilters{
+    margin-top: 15px;
+    background-color: #ffffff;
+    text-align: left;
+     padding: 10px 0px 15px 12px;
+
+    
+
+}
+.resultSearch{
+    background-color: #1da1f2;
+    width: 100%; 
+    height: 60px;
+    border: 1px solid #1da1f2;
+    color: #ffffff;
+    padding: 10px 0px 15px 70px;
+}
+
+
+ .searchLeft{
+    width: 25%;
+    margin-left: 100px;
+     margin-top: 15px;
+    text-align: left;
+    height: 55px;
+    padding:20px 0px 20px 30px; 
+}
+
+
+.whoToFollw{
+    border: 1px solid #ffffff;
+   
+    background-color: #ffffff;
+    text-align: left;
+    height: 155px;
+    padding:20px 0px 20px 50px; 
+   
+}
+/* /////////////////////////////////////////////////////////////////*/
+
+
+/* trends for you */ 
+.trendsFor a:link {
+    color: #26a4f3;
+     text-decoration: none;
+
+}.trendsFor{
+    background-color: #ffffff;
+    padding-left: 20px;
+    margin-left: 0px;
+
+}
+.trendsFor a:hover {
+    color:#1da1f2;
+     text-decoration: underline;
+}
+.trendsFor a {
+    color:#26a4f3;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* footer */ 
+
+
+
+/* End Search left*/ 
+
+ 
+/*  start search body*/
+.searchBody{
+    width: 800px;
+   
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.pInfo{
+    background-color: #ffffff;
+    width: 250px;
+    height: 200px;
+
+
+}
+.pCover{
+    background-image: url('flower.jpg');
+    background-size: cover;
+    height: 100px;
+}
+
+.button {
+    
+}
+.followP{
+    float: right;
+    background-color: #ffffff; /* Green */
+    width: 85px;
+    padding: 3px 5px 5px 1px;
+    color: #69ace2;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+     border: 1px solid #69ace2;
+    border-radius: 25px;
+
+}
+
+/*  gifffffffffff people post*/
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+body {
+        background: #e6ecf0;
+   
+    font-size: 14px;
+        font-family: "Segoe UI",Arial,sans-serif;
+}
+/* Start nav bar*/ 
+.container{
+        position: relative;
+    width: 890px;
+    margin: 0 auto;
+}
+nav .container{
+    height: 100%;
+    
+    text-align: left;
+    width: auto;
+    margin-left: 50px;
+}
+nav{
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #ffffff; 
+
+}
+
+.navLeft{
+      height: 46px;
+    overflow: hidden;
+    color: #657786;
+
+}
+nav li {
+    position: relative;
+      font-weight: bolder;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 15px;
+
+
+}
+
+ nav ul {
+    margin: 0;
+    padding: 0;
+     list-style-type: none;
+    
+}
+footer a ,nav a:link {
+    color: #657786;
+     text-decoration: none;
+
+}
+
+/* visited link */
+nav a:visited {
+    color:#657786;;
+    
+   
+     text-decoration: underline;
+}
+
+/* mouse over link */
+nav a:hover {
+    color:#1da1f2;
+     text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color:#1da1f2;
+}
+.search : hover{
+     border: 2px solid #1da1f2;
+    padding: 2px;
+    background-color: #f5f8fa;
+    border-radius: 25px;
+
+}
+ input[type= search]{
+       border: 2px solid #f5f8fa;
+    padding: 2px;
+    background-color: #f5f8fa;
+    border-radius: 25px;
+
+}
+input[type=search] {
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    background-size: 10px 8px;
+}
+/* End nav bar*/ 
+
+
+/* Start Search left */ 
+.searchFilters{
+    margin-top: 15px;
+    background-color: #ffffff;
+    text-align: left;
+     padding: 10px 0px 15px 12px;
+
+    
+
+}
+.resultSearch{
+    background-color: #1da1f2;
+    width: 100%; 
+    height: 60px;
+    border: 1px solid #1da1f2;
+    color: #ffffff;
+    padding: 10px 0px 15px 70px;
+}
+
+
+ .searchLeft{
+    width: 25%;
+    margin-left: 100px;
+     margin-top: 15px;
+    text-align: left;
+    height: 55px;
+    padding:20px 0px 20px 30px; 
+}
+
+
+.whoToFollw{
+    border: 1px solid #ffffff;
+   
+    background-color: #ffffff;
+    text-align: left;
+    height: 155px;
+    padding:20px 0px 20px 50px; 
+   
+}
+/* /////////////////////////////////////////////////////////////////*/
+
+
+/* trends for you */ 
+.trendsFor a:link {
+    color: #26a4f3;
+     text-decoration: none;
+
+}.trendsFor{
+    background-color: #ffffff;
+    padding-left: 20px;
+    margin-left: 0px;
+
+}
+.trendsFor a:hover {
+    color:#1da1f2;
+     text-decoration: underline;
+}
+.trendsFor a {
+    color:#26a4f3;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* footer */ 
+
+
+
+/* End Search left*/ 
+
+ 
+/*  start search body*/
+.searchBody{
+    width: 800px;
+   
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.pInfo{
+    background-color: #ffffff;
+    width: 250px;
+    height: 200px;
+
+
+}
+.pCover{
+    background-image: url('flower.jpg');
+    background-size: cover;
+    height: 100px;
+}
+
+.button {
+    
+}
+.followP{
+    float: right;
+    background-color: #ffffff; /* Green */
+    width: 85px;
+    padding: 3px 5px 5px 1px;
+    color: #69ace2;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+     border: 1px solid #69ace2;
+    border-radius: 25px;
+
+}
+
+/*  gifffffffffff people post*/
